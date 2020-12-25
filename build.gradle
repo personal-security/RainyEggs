@@ -13,6 +13,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.1'
         classpath 'com.google.gms:google-services:4.3.4'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
 
     }
 }
@@ -55,7 +56,7 @@ project(":desktop") {
 
 project(":android") {
     apply plugin: "com.android.application"
-    apply plugin: 'com.google.gms.google-services'
+
 
     configurations { natives }
 
@@ -74,12 +75,18 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
 
+        implementation platform('com.google.firebase:firebase-bom:26.2.0')
+        implementation 'com.google.firebase:firebase-core'
+        implementation 'com.google.firebase:firebase-ads'
+        implementation 'com.google.firebase:firebase-analytics'
+        implementation 'com.google.android.gms:play-services-ads'
+        implementation 'com.google.firebase:firebase-crashlytics'
 
-        implementation 'com.google.firebase:firebase-core:18.0.0'
-        implementation 'com.google.firebase:firebase-ads:19.6.0'
-        implementation 'com.google.android.gms:play-services-ads:19.6.0'
 
     }
+
+    apply plugin: 'com.google.gms.google-services'
+    apply plugin: 'com.google.firebase.crashlytics'
 }
 
 project(":core") {
