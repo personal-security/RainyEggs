@@ -2,6 +2,7 @@ package com.xlab13.yummycarrot.states;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -13,6 +14,7 @@ import com.xlab13.yummycarrot.sprites.Carrot;
 import com.xlab13.yummycarrot.sprites.Ground;
 import com.xlab13.yummycarrot.sprites.Player;
 
+import java.util.Random;
 
 
 /**
@@ -34,7 +36,7 @@ public class PlayState extends State {
     private Array<Carrot> eggs;
     private Ground ground;
     private Player player;
-    private boolean isSound;
+    private Sound ochko, schopk1, schopk2, lose;
 
     public PlayState(GameStateManager gsm) {
         super(gsm);
@@ -45,6 +47,11 @@ public class PlayState extends State {
         }
 
         ground = new Ground();
+
+        ochko = Gdx.audio.newSound(Gdx.files.internal("ochko.wav"));
+        schopk1 = Gdx.audio.newSound(Gdx.files.internal("chpok1.wav"));
+        schopk2 = Gdx.audio.newSound(Gdx.files.internal("chpok2.wav"));
+        lose = Gdx.audio.newSound(Gdx.files.internal("lose.wav"));
 
         background = new Texture(Gdx.files.internal("bg.png"));
         clouds = new Texture(Gdx.files.internal("cloud.png"));
@@ -73,6 +80,12 @@ public class PlayState extends State {
             if (egg.isTouching(player.getHitBox())) {
                 egg.reposition();
                 score++;
+                if (score % 50 == 0 && score > 0) ochko.play(0.3f);
+                else {
+                    if (new Random().nextBoolean()) schopk1.play(0.3f);
+                    else  schopk2.play(0.3f);
+                }
+
             } else if (egg.getPosition().y <= ground.getTexture().getHeight()) {
                 YummyCarrot.score = score;
                 YummyCarrot.lifetime = YummyCarrot.lifetime + score;
@@ -89,7 +102,7 @@ public class PlayState extends State {
                     YummyCarrot.loses = 0;
                 }
                 scores.putInteger("loses", YummyCarrot.loses);
-                Gdx.audio.newMusic(Gdx.files.internal("lose.wav")).play();
+                lose.play(0.3f);
                 gsm.game.getHandler().showBanner(true);
                 gsm.set(new MenuState(gsm));
             }
@@ -106,8 +119,6 @@ public class PlayState extends State {
             sb.draw(egg.getTexture(), egg.getPosition().x, egg.getPosition().y);
         }
         sb.draw(player.getTexture(), player.getPosition().x, player.getPosition().y);
-        if (score % 50 == 0 && score > 0 && !isSound) {Gdx.audio.newMusic(Gdx.files.internal("ochko.wav")).play(); isSound = true;}
-        else if (score % 50 != 0 ) isSound = false;
         font.draw(sb, Integer.toString(score), YummyCarrot.WIDTH / 2 , SCORE_HEIGHT-80, Align.center, Align.center, true);
         sb.draw(clouds, 0, YummyCarrot.HEIGHT-80, YummyCarrot.WIDTH, 80);
         sb.end();
@@ -122,5 +133,9 @@ public class PlayState extends State {
         }
         ground.dispose();
         player.dispose();
+        ochko.dispose();
+        schopk1.dispose();
+        schopk2.dispose();
+        lose.dispose();
     }
 }
