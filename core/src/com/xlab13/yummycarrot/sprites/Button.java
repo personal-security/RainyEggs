@@ -1,4 +1,4 @@
-package com.xlab13.rainyeggs.sprites;
+package com.xlab13.yummycarrot.sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

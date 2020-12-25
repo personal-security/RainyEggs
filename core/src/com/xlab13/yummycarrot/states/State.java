@@ -1,4 +1,4 @@
-package com.xlab13.rainyeggs.states;
+package com.xlab13.yummycarrot.states;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

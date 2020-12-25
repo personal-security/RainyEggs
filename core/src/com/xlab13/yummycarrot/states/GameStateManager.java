@@ -1,6 +1,7 @@
-package com.xlab13.rainyeggs.states;
+package com.xlab13.yummycarrot.states;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.xlab13.yummycarrot.YummyCarrot;
 
 import java.util.Stack;
 
@@ -9,9 +10,12 @@ import java.util.Stack;
  */
 
 public class GameStateManager {
+
+    public YummyCarrot game;
     private Stack<State> states;
 
-    public GameStateManager(){
+    public GameStateManager(YummyCarrot game){
+        this.game = game;
         states = new Stack<State>();
     }
 

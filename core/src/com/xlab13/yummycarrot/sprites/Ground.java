@@ -1,5 +1,7 @@
-package com.xlab13.rainyeggs.sprites;
+package com.xlab13.yummycarrot.sprites;
 
+import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 

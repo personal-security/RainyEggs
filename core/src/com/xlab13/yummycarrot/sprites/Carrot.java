@@ -1,9 +1,9 @@
-package com.xlab13.rainyeggs.sprites;
+package com.xlab13.yummycarrot.sprites;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.xlab13.rainyeggs.RainyEggsGame;
+import com.xlab13.yummycarrot.YummyCarrot;
 
 import java.util.Random;
 
@@ -12,28 +12,28 @@ import java.util.Random;
  * Created by obitola on 12/24/2017.
  */
 
-public class Egg {
+public class Carrot {
     public static final int GAP = 75;
-    public static final int EGG_COUNT = Math.round(RainyEggsGame.HEIGHT / (GAP * 4 / 3));
-    private static final int START_SPEED = 300;
+    public static final int EGG_COUNT = Math.round(YummyCarrot.HEIGHT / (GAP * 4 / 3));
+    private static final int START_SPEED = 250;
     private static final int SPEED_INCREASE_MARGIN = 1;
     private static final int INCREMENT_SPEED = 30;
     private static final int MAX_SPEED = 3000;
     private static final int MARGIN = 30;
 
-    private Texture egg;
+    private Texture carrot;
     private Vector2 position;
     private Vector2 velocity;
     private Rectangle hitBox;
     private Random rand;
     private int speed;
 
-    public Egg(float y){
-        egg = new Texture("egg.png");
+    public Carrot(float y){
+        carrot = new Texture("carrot.png");
         rand = new Random();
-        position = new Vector2(rand.nextInt(RainyEggsGame.WIDTH - (2 * MARGIN)) + MARGIN - (egg.getWidth() / 2), y);
+        position = new Vector2(rand.nextInt(YummyCarrot.WIDTH - (2 * MARGIN)) + MARGIN - (carrot.getWidth() / 2), y);
         velocity = new Vector2(0, START_SPEED);
-        hitBox = new Rectangle(position.x,position.y,egg.getWidth(),egg.getHeight());
+        hitBox = new Rectangle(position.x,position.y, carrot.getWidth(), carrot.getHeight());
         speed = START_SPEED;
     }
 
@@ -48,7 +48,7 @@ public class Egg {
     }
 
     public void reposition(){
-        position.x = rand.nextInt(RainyEggsGame.WIDTH - (2 * MARGIN)) + MARGIN - (egg.getWidth() / 2);
+        position.x = rand.nextInt(YummyCarrot.WIDTH - (2 * MARGIN)) + MARGIN - (carrot.getWidth() / 2);
         if (speed >= MAX_SPEED)
             position.y = position.y + (EGG_COUNT * GAP * speed) / START_SPEED;
         else{
@@ -61,7 +61,7 @@ public class Egg {
     }
 
     public Texture getTexture(){
-        return egg;
+        return carrot;
     }
 
     public Vector2 getPosition(){
@@ -73,7 +73,7 @@ public class Egg {
     }
 
     public void dispose(){
-        egg.dispose();
+        carrot.dispose();
     }
 
 }

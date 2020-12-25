@@ -1,4 +1,4 @@
-package com.xlab13.rainyeggs.sprites;
+package com.xlab13.yummycarrot.sprites;
 
 /**
  * Created by obitola on 12/27/2017.

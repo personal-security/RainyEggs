@@ -1,4 +1,4 @@
-package com.xlab13.rainyeggs.sprites;
+package com.xlab13.yummycarrot.sprites;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.xlab13.rainyeggs.RainyEggsGame;
+import com.xlab13.yummycarrot.YummyCarrot;
 
 /**
  * Created by obitola on 12/24/2017.
@@ -19,7 +19,7 @@ public class Player {
     private Vector2 position;
     private Rectangle hitBox;
     private Animation playerAnimation;
-    private Preferences scores = Gdx.app.getPreferences(RainyEggsGame.FILENAME);
+    private Preferences scores = Gdx.app.getPreferences(YummyCarrot.FILENAME);
 
 
     public Player(float x, float y){

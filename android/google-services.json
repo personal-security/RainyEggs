@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "327930160613",
+    "project_id": "yummy-carrot",
+    "storage_bucket": "yummy-carrot.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327930160613:android:7801156daa961558febb0c",
+        "android_client_info": {
+          "package_name": "com.xlab13.yummycarrot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327930160613-1stvaa962d86ojsb9ld5q7sar0hmdfi7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbe6asLVWDc9Bk3Oi6l2tNuyobYPOs-Xk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327930160613-1stvaa962d86ojsb9ld5q7sar0hmdfi7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

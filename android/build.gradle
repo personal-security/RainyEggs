@@ -17,8 +17,8 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "com.xlab13.rainyeggs"
-        minSdkVersion 14
+        applicationId "com.xlab13.yummycarrot"
+        minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -86,7 +86,7 @@ task run(type: Exec) {
     }
 
     def adb = path + "/platform-tools/adb"
-    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.xlab13.rainyeggs/com.xlab13.rainyeggs.AndroidLauncher'
+    commandLine "$adb", 'shell', 'am', 'start', '-n', 'com.xlab13.rainyeggs/com.xlab13.yummycarrot.AndroidLauncher'
 }
 
 eclipse.project.name = appName + "-android"
