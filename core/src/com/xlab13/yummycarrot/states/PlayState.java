@@ -84,10 +84,10 @@ public class PlayState extends State {
                     scores.putInteger("best", score);
                 }
                 scores.flush();
-                //if (YummyCarrot.loses >= 5){
+                if (YummyCarrot.loses >= 5){
                     gsm.game.getHandler().showAds();
                     YummyCarrot.loses = 0;
-                //}
+                }
                 scores.putInteger("loses", YummyCarrot.loses);
                 Gdx.audio.newMusic(Gdx.files.internal("lose.wav")).play();
                 gsm.game.getHandler().showBanner(true);
