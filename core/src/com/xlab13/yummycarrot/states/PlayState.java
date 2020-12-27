@@ -49,7 +49,6 @@ public class PlayState extends State {
         }
 
         ground = new Ground();
-
         ochko = Gdx.audio.newSound(Gdx.files.internal("ochko.wav"));
         schopk1 = Gdx.audio.newSound(Gdx.files.internal("chpok1.wav"));
         schopk2 = Gdx.audio.newSound(Gdx.files.internal("chpok2.wav"));
