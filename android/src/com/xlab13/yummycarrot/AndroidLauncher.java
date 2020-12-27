@@ -58,6 +58,7 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 
 						}
 					});
+					rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
 					break;
 			}
 		}
