@@ -49,10 +49,10 @@ public class PlayState extends State {
         }
 
         ground = new Ground();
-        ochko = Gdx.audio.newSound(Gdx.files.internal("ochko.wav"));
+        ochko = Gdx.audio.newSound(Gdx.files.internal("ochko1.wav"));
         schopk1 = Gdx.audio.newSound(Gdx.files.internal("chpok1.wav"));
         schopk2 = Gdx.audio.newSound(Gdx.files.internal("chpok2.wav"));
-        lose = Gdx.audio.newSound(Gdx.files.internal("lose.wav"));
+        lose = Gdx.audio.newSound(Gdx.files.internal("lose1.wav"));
 
         background = new Texture(Gdx.files.internal("bg.png"));
         clouds = new Texture(Gdx.files.internal("cloud.png"));
