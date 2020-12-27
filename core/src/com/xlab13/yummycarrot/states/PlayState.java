@@ -125,13 +125,15 @@ public class PlayState extends State {
         sb.setProjectionMatrix(cam.combined);
         sb.begin();
         sb.draw(background, 0, 0, YummyCarrot.WIDTH, YummyCarrot.HEIGHT);
-        sb.draw(ground.getTexture(), 0, 0, YummyCarrot.WIDTH, ground.getTexture().getHeight());
+        if (YummyCarrot.WIDTH > ground.getHitbox().width) sb.draw(ground.getTexture(), 0, 0, YummyCarrot.WIDTH, ground.getTexture().getHeight());
+        else sb.draw(ground.getTexture(), 0, 0);
         for (Carrot egg : eggs) {
             sb.draw(egg.getTexture(), egg.getPosition().x, egg.getPosition().y);
         }
         sb.draw(player.getTexture(), player.getPosition().x, player.getPosition().y);
         font.draw(sb, Integer.toString(score), YummyCarrot.WIDTH / 2 , SCORE_HEIGHT-80, Align.center, Align.center, true);
-        sb.draw(clouds, 0, YummyCarrot.HEIGHT-80, YummyCarrot.WIDTH, 80);
+        if (YummyCarrot.WIDTH > 468) sb.draw(clouds, 0, YummyCarrot.HEIGHT-80, YummyCarrot.WIDTH, YummyCarrot.HEIGHT);
+        else sb.draw(clouds, 0, YummyCarrot.HEIGHT-80);
         sb.end();
     }
 

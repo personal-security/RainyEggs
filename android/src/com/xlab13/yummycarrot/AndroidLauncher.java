@@ -55,10 +55,9 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 					rewardedAd.show((Activity) context, new RewardedAdCallback() {
 						@Override
 						public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-
+							initAd();
 						}
 					});
-					rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
 					break;
 			}
 		}
@@ -99,6 +98,10 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 
 		adView.setVisibility(View.VISIBLE);
 
+		initAd();
+	}
+
+	private void initAd(){
 		rewardedAd = new RewardedAd(this, "ca-app-pub-8059131308960326/8360077849"); //ca-app-pub-8059131308960326/8360077849
 		adLoadCallback = new RewardedAdLoadCallback() {
 			@Override
