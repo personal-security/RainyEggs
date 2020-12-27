@@ -55,9 +55,9 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 					rewardedAd.show((Activity) context, new RewardedAdCallback() {
 						@Override
 						public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-							initAd();
 						}
 					});
+					initAd();
 					break;
 			}
 		}
