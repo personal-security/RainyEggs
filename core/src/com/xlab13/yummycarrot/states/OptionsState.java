@@ -46,12 +46,15 @@ public class OptionsState extends State {
                 gsm.set(new MenuState(gsm));
             }
             else if(on.within(x, y)){
-
-                scores.putBoolean("music", false);
+                scores.putBoolean("music", true);
+                scores.flush();
+                YummyCarrot.isSound = true;
                 YummyCarrot.music.setVolume(0.1f);
             }
             else if(off.within(x, y)){
-                scores.putBoolean("music", true);
+                scores.putBoolean("music", false);
+                scores.flush();
+                YummyCarrot.isSound = false;
                 YummyCarrot.music.setVolume(0.0f);
             }
         }

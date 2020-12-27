@@ -1,5 +1,6 @@
 package com.xlab13.yummycarrot;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
@@ -15,7 +16,7 @@ public class YummyCarrot extends ApplicationAdapter {
 
 	public static final int WIDTH = 432;
 	public static final int HEIGHT = 720;
-	public static final String TITLE = "Rainy Eggs";
+	public static final String TITLE = "Yummy Carrot";
 	public static final String FILENAME = "DATA1";
 
 	private GameStateManager gsm;
@@ -24,6 +25,7 @@ public class YummyCarrot extends ApplicationAdapter {
 	public static int score;
 	public static int lifetime;
 	public static int loses;
+	public static boolean isSound;
 	public static Music music;
 
 	public YummyCarrot(IActivityRequestHandler handler) {
@@ -32,16 +34,17 @@ public class YummyCarrot extends ApplicationAdapter {
 
 	@Override
 	public void create () {
+		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		batch = new SpriteBatch();
 		gsm = new GameStateManager(this);
 		Preferences scores = Gdx.app.getPreferences(FILENAME);
+		isSound = scores.getBoolean("music", true);
 		music = Gdx.audio.newMusic(Gdx.files.internal("ost.mp3"));
 		music.setLooping(true);
-		if (scores.getBoolean("music")){
-			music.setVolume(0f);
-		}
-		else{
+		if (isSound){
 			music.setVolume(0.1f);
+		} else{
+			music.setVolume(0f);
 		}
 		music.play();
 		Gdx.gl.glClearColor(1, 1,1, 1);

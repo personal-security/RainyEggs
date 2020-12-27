@@ -16,6 +16,8 @@ import com.xlab13.yummycarrot.sprites.Player;
 
 import java.util.Random;
 
+import sun.rmi.runtime.Log;
+
 
 /**
  * Created by obitola on 12/24/2017.
@@ -80,10 +82,18 @@ public class PlayState extends State {
             if (egg.isTouching(player.getHitBox())) {
                 egg.reposition();
                 score++;
-                if (score % 50 == 0 && score > 0) ochko.play(0.3f);
-                else {
-                    if (new Random().nextBoolean()) schopk1.play(0.3f);
-                    else  schopk2.play(0.3f);
+                if (YummyCarrot.isSound) {
+                    Thread thread = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (score % 50 == 0 && score > 0) ochko.play(0.2f);
+                            else {
+                                if (new Random().nextBoolean()) schopk1.play(0.2f);
+                                else  schopk2.play(0.2f);
+                            }
+                        }
+                    });
+                    thread.start();
                 }
 
             } else if (egg.getPosition().y <= ground.getTexture().getHeight()) {
@@ -96,15 +106,17 @@ public class PlayState extends State {
                     YummyCarrot.best = score;
                     scores.putInteger("best", score);
                 }
-                scores.flush();
                 if (YummyCarrot.loses >= 5){
                     gsm.game.getHandler().showAds();
                     YummyCarrot.loses = 0;
                 }
                 scores.putInteger("loses", YummyCarrot.loses);
-                lose.play(0.3f);
-                gsm.game.getHandler().showBanner(true);
+                if (YummyCarrot.isSound){
+                    lose.play(0.2f);
+                }
+                scores.flush();
                 gsm.set(new MenuState(gsm));
+                gsm.game.getHandler().showBanner(true);
             }
         }
     }
