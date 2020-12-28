@@ -18,6 +18,8 @@ import java.util.Random;
 
 import sun.rmi.runtime.Log;
 
+import static com.xlab13.yummycarrot.YummyCarrot.loses;
+
 
 /**
  * Created by obitola on 12/24/2017.
@@ -98,18 +100,19 @@ public class PlayState extends State {
             } else if (egg.getPosition().y <= ground.getTexture().getHeight()) {
                 YummyCarrot.score = score;
                 YummyCarrot.lifetime = YummyCarrot.lifetime + score;
-                YummyCarrot.loses +=1;
+                loses +=1;
                 Preferences scores = Gdx.app.getPreferences(YummyCarrot.FILENAME);
                 scores.putInteger("lifetime", YummyCarrot.lifetime);
                 if (score > YummyCarrot.best) {
                     YummyCarrot.best = score;
                     scores.putInteger("best", score);
                 }
-                if (YummyCarrot.loses >= 5){
+                Gdx.app.debug("~~~", String.valueOf(loses));
+                if (loses >= 5){
                     gsm.game.getHandler().showAds();
-                    YummyCarrot.loses = 0;
+                    loses = 0;
                 }
-                scores.putInteger("loses", YummyCarrot.loses);
+                scores.putInteger("loses", loses);
                 if (YummyCarrot.isSound){
                     lose.play(0.2f);
                 }

@@ -16,9 +16,11 @@ import androidx.annotation.NonNull;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.rewarded.RewardItem;
 import com.google.android.gms.ads.rewarded.RewardedAd;
@@ -32,8 +34,8 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 	private final int HIDE_BANNER = 0;
 	private final int SHOW_ADS = 2;
 
-	protected RewardedAd rewardedAd;
-	protected RewardedAdLoadCallback adLoadCallback;
+	private InterstitialAd mInterstitialAd;
+	private RewardedAdLoadCallback adLoadCallback;
 
 	protected AdView adView;
 	protected View gameView;
@@ -43,21 +45,14 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 		public void handleMessage(Message msg) {
 			switch(msg.what) {
 				case SHOW_BANNER:
-					Log.d("~~~", "SHOW_BANNER");
 					adView.setVisibility(View.VISIBLE);
 					break;
 				case HIDE_BANNER:
-					Log.d("~~~", "HIDE_BANNER");
 					adView.setVisibility(View.GONE);
 					break;
 				case SHOW_ADS:
 					Log.d("~~~", "SHOW_ADS");
-					rewardedAd.show((Activity) context, new RewardedAdCallback() {
-						@Override
-						public void onUserEarnedReward(@NonNull RewardItem rewardItem) {
-						}
-					});
-					initAd();
+					mInterstitialAd.show();
 					break;
 			}
 		}
@@ -102,19 +97,16 @@ public class AndroidLauncher extends AndroidApplication implements IActivityRequ
 	}
 
 	private void initAd(){
-		rewardedAd = new RewardedAd(this, "ca-app-pub-8059131308960326/8360077849"); //ca-app-pub-8059131308960326/8360077849
-		adLoadCallback = new RewardedAdLoadCallback() {
+		mInterstitialAd = new InterstitialAd(this);
+		mInterstitialAd.setAdUnitId("ca-app-pub-8059131308960326/8360077849"); //ca-app-pub-8059131308960326/8360077849
+		mInterstitialAd.setAdListener(new AdListener(){
 			@Override
-			public void onRewardedAdLoaded() {
-				// Ad successfully loaded.
+			public void onAdClosed() {
+				super.onAdClosed();
+				mInterstitialAd.loadAd(new AdRequest.Builder().build());
 			}
-
-			@Override
-			public void onRewardedAdFailedToLoad(LoadAdError adError) {
-				// Ad failed to load.
-			}
-		};
-		rewardedAd.loadAd(new AdRequest.Builder().build(), adLoadCallback);
+		});
+		mInterstitialAd.loadAd(new AdRequest.Builder().build());
 	}
 
 
