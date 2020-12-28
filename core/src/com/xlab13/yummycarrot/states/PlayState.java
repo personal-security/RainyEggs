@@ -131,7 +131,7 @@ public class PlayState extends State {
         if (YummyCarrot.WIDTH > ground.getHitbox().width) sb.draw(ground.getTexture(), 0, 0, YummyCarrot.WIDTH, ground.getTexture().getHeight());
         else sb.draw(ground.getTexture(), 0, 0);
         for (Carrot egg : eggs) {
-            sb.draw(egg.getTexture(), egg.getPosition().x, egg.getPosition().y);
+            if (egg.getPosition().y <= YummyCarrot.HEIGHT-80) sb.draw(egg.getTexture(), egg.getPosition().x, egg.getPosition().y);
         }
         sb.draw(player.getTexture(), player.getPosition().x, player.getPosition().y);
         font.draw(sb, Integer.toString(score), YummyCarrot.WIDTH / 2 , SCORE_HEIGHT-80, Align.center, Align.center, true);
